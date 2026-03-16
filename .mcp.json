@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "postgres": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-postgres",
+        "postgresql://m5labs:m5labs123@vps.m5-labs.com:5432/m5labs_db?sslmode=disable&connect_timeout=10"
+      ]
+    }
+  }
+}
