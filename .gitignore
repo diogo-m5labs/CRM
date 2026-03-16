@@ -1,0 +1,14 @@
+# Credenciais e segredos
+.env
+credentials.json
+token.json
+
+# Arquivos intermediários (sempre regeneráveis)
+.tmp/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
