@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Users, StickyNote, CheckSquare, LayoutDashboard } from "lucide-react";
+import { Users, StickyNote, CheckSquare, LayoutDashboard, LogOut } from "lucide-react";
+import { logoutAction } from "./logout-action";
 
 const nav = [
   { href: "/",         label: "Dashboard", icon: LayoutDashboard },
@@ -55,6 +56,19 @@ export default function Sidebar() {
           );
         })}
       </nav>
+
+      {/* Sign out */}
+      <div className="px-2 pb-3 border-t border-white/[.05] pt-2">
+        <form action={logoutAction}>
+          <button
+            type="submit"
+            className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-ink-3 hover:bg-raised hover:text-ink-2 transition-colors"
+          >
+            <LogOut size={14} strokeWidth={1.75} />
+            Sign out
+          </button>
+        </form>
+      </div>
     </aside>
   );
 }
