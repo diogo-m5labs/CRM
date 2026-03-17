@@ -5,7 +5,8 @@
       "Bash(npx prisma:*)",
       "Bash(npm install:*)",
       "Bash(npx next:*)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(ls \"c:\\\\M5LABS\\\\DEV\\\\Teste\\\\CRM\\\\personal-crm\\\\prisma\"\" && cat \"c:M5LABSDEVTesteCRMpersonal-crmprismaprisma.config.ts\" 2>/dev/null; cat \"c:M5LABSDEVTesteCRMpersonal-crmprisma.config.ts \")"
     ]
   }
 }
