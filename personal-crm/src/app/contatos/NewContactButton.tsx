@@ -5,10 +5,10 @@ import { Plus, X } from "lucide-react";
 import { createContact } from "@/lib/actions";
 
 const fields = [
-  { name: "name",        label: "Name",        required: true  },
-  { name: "phoneNumber", label: "Phone",        required: false },
-  { name: "email",       label: "Email",        required: false },
-  { name: "company",     label: "Company",      required: false },
+  { name: "name",        label: "Nome",     required: true  },
+  { name: "phoneNumber", label: "Telefone", required: false },
+  { name: "email",       label: "E-mail",   required: false },
+  { name: "company",     label: "Empresa",  required: false },
 ];
 
 export default function NewContactButton() {
@@ -37,7 +37,7 @@ export default function NewContactButton() {
         className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-accent/15 text-accent-fg text-sm font-medium hover:bg-accent/25 transition-colors"
       >
         <Plus size={14} strokeWidth={2.5} />
-        New Contact
+        Novo Contato
       </button>
 
       {open && (
@@ -47,7 +47,7 @@ export default function NewContactButton() {
         >
           <div className="bg-overlay border border-white/[.09] rounded-2xl shadow-2xl w-full max-w-sm mx-4">
             <div className="flex items-center justify-between px-6 py-5 border-b border-white/[.06]">
-              <h2 className="text-sm font-semibold text-ink">New Contact</h2>
+              <h2 className="text-sm font-semibold text-ink">Novo Contato</h2>
               <button
                 onClick={() => setOpen(false)}
                 className="text-ink-3 hover:text-ink-2 transition-colors p-0.5"
@@ -71,7 +71,7 @@ export default function NewContactButton() {
               ))}
               <div>
                 <label className="block text-[11px] font-medium text-ink-3 mb-1.5 uppercase tracking-wider">
-                  Notes
+                  Observações
                 </label>
                 <textarea
                   name="notes"
@@ -86,14 +86,14 @@ export default function NewContactButton() {
                   onClick={() => setOpen(false)}
                   className="flex-1 py-2 text-sm rounded-lg border border-white/[.08] text-ink-2 hover:bg-raised transition-colors"
                 >
-                  Cancel
+                  Cancelar
                 </button>
                 <button
                   type="submit"
                   disabled={loading}
                   className="flex-1 py-2 text-sm rounded-lg bg-accent text-white font-medium hover:bg-accent/90 disabled:opacity-40 transition-colors"
                 >
-                  {loading ? "Saving…" : "Save"}
+                  {loading ? "Salvando…" : "Salvar"}
                 </button>
               </div>
             </form>

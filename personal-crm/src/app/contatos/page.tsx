@@ -10,15 +10,15 @@ export default async function ContactsPage() {
     <div className="p-8 max-w-2xl">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-xl font-semibold text-ink tracking-tight">Contacts</h1>
-          <p className="text-sm text-ink-3 mt-0.5">{contacts.length} people</p>
+          <h1 className="text-xl font-semibold text-ink tracking-tight">Contatos</h1>
+          <p className="text-sm text-ink-3 mt-0.5">{contacts.length} pessoas</p>
         </div>
         <NewContactButton />
       </div>
 
       {contacts.length === 0 ? (
         <div className="text-center py-20 text-ink-3">
-          <p className="text-sm">No contacts yet. Add your first one.</p>
+          <p className="text-sm">Nenhum contato ainda. Adicione o primeiro.</p>
         </div>
       ) : (
         <ul className="bg-surface rounded-xl border border-white/[.06] divide-y divide-white/[.04] overflow-hidden">
@@ -27,7 +27,7 @@ export default async function ContactsPage() {
             return (
               <li key={c.id}>
                 <Link
-                  href={`/contacts/${c.id}`}
+                  href={`/contatos/${c.id}`}
                   className="flex items-center gap-4 px-5 py-4 hover:bg-raised transition-colors"
                 >
                   <div

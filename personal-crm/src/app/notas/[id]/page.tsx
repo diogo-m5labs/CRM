@@ -12,10 +12,10 @@ export default async function NoteDetailPage({ params }: { params: Promise<{ id:
   return (
     <div className="p-8 max-w-2xl">
       <Link
-        href="/notes"
+        href="/notas"
         className="inline-flex items-center gap-1.5 text-xs text-ink-3 hover:text-ink-2 transition-colors mb-7"
       >
-        <ArrowLeft size={13} /> Notes
+        <ArrowLeft size={13} /> Notas
       </Link>
       <NoteEditor note={note} />
     </div>

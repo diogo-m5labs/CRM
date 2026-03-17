@@ -41,7 +41,7 @@ export default function NoteEditor({ note }: { note: Note }) {
   const editor = useEditor({
     extensions: [
       StarterKit,
-      Placeholder.configure({ placeholder: "Start writing…" }),
+      Placeholder.configure({ placeholder: "Comece a escrever…" }),
     ],
     content: note.content || "",
     onUpdate: () => setSaved(false),
@@ -54,9 +54,9 @@ export default function NoteEditor({ note }: { note: Note }) {
   }, [editor, note.id, title]);
 
   async function handleDelete() {
-    if (!confirm("Delete this note?")) return;
+    if (!confirm("Excluir esta nota?")) return;
     await deleteNote(note.id);
-    router.push("/notes");
+    router.push("/notas");
   }
 
   return (
@@ -68,19 +68,19 @@ export default function NoteEditor({ note }: { note: Note }) {
           onChange={(e) => { setTitle(e.target.value); setSaved(false); }}
           onBlur={save}
           className="flex-1 text-base font-semibold text-ink bg-transparent outline-none placeholder:text-ink-4 tracking-tight"
-          placeholder="Note title"
+          placeholder="Título da nota"
         />
         <div className="flex items-center gap-2 shrink-0">
           {saved ? (
             <span className="text-[10px] text-ink-3 flex items-center gap-1">
-              <Check size={11} /> Saved
+              <Check size={11} /> Salvo
             </span>
           ) : (
             <button
               onClick={save}
               className="text-xs px-3 py-1.5 rounded-lg bg-accent/15 text-accent-fg font-medium hover:bg-accent/25 transition-colors"
             >
-              Save
+              Salvar
             </button>
           )}
           <button

@@ -27,7 +27,7 @@ export async function createContact(data: {
   notes?: string;
 }) {
   await prisma.contact.create({ data });
-  revalidatePath("/contacts");
+  revalidatePath("/contatos");
 }
 
 export async function updateContact(
@@ -41,13 +41,13 @@ export async function updateContact(
   }
 ) {
   await prisma.contact.update({ where: { id }, data });
-  revalidatePath("/contacts");
-  revalidatePath(`/contacts/${id}`);
+  revalidatePath("/contatos");
+  revalidatePath(`/contatos/${id}`);
 }
 
 export async function deleteContact(id: string) {
   await prisma.contact.delete({ where: { id } });
-  revalidatePath("/contacts");
+  revalidatePath("/contatos");
 }
 
 // ── Conversations ─────────────────────────────────────────────────────────────
@@ -58,7 +58,15 @@ export async function addMessage(data: {
   direction: "inbound" | "outbound";
 }) {
   await prisma.conversation.create({ data });
-  revalidatePath(`/contacts/${data.contactId}`);
+  revalidatePath(`/contatos/${data.contactId}`);
+  revalidatePath("/conversas");
+}
+
+export async function getAllConversations() {
+  return prisma.conversation.findMany({
+    orderBy: { timestamp: "desc" },
+    include: { contact: { select: { id: true, name: true } } },
+  });
 }
 
 // ── Notes ─────────────────────────────────────────────────────────────────────
@@ -73,19 +81,19 @@ export async function getNote(id: string) {
 
 export async function createNote(data: { title: string; content?: string }) {
   const note = await prisma.note.create({ data: { title: data.title, content: data.content ?? "" } });
-  revalidatePath("/notes");
+  revalidatePath("/notas");
   return note;
 }
 
 export async function updateNote(id: string, data: { title?: string; content?: string }) {
   await prisma.note.update({ where: { id }, data });
-  revalidatePath("/notes");
-  revalidatePath(`/notes/${id}`);
+  revalidatePath("/notas");
+  revalidatePath(`/notas/${id}`);
 }
 
 export async function deleteNote(id: string) {
   await prisma.note.delete({ where: { id } });
-  revalidatePath("/notes");
+  revalidatePath("/notas");
 }
 
 // ── Tasks ─────────────────────────────────────────────────────────────────────
@@ -101,22 +109,22 @@ export async function createTask(data: {
 }) {
   const count = await prisma.task.count({ where: { status: data.status ?? "Todo" } });
   await prisma.task.create({ data: { ...data, position: count } });
-  revalidatePath("/tasks");
+  revalidatePath("/tarefas");
 }
 
 export async function updateTaskStatus(id: string, status: string) {
   await prisma.task.update({ where: { id }, data: { status } });
-  revalidatePath("/tasks");
+  revalidatePath("/tarefas");
 }
 
 export async function updateTask(id: string, data: { title?: string; description?: string; status?: string }) {
   await prisma.task.update({ where: { id }, data });
-  revalidatePath("/tasks");
+  revalidatePath("/tarefas");
 }
 
 export async function deleteTask(id: string) {
   await prisma.task.delete({ where: { id } });
-  revalidatePath("/tasks");
+  revalidatePath("/tarefas");
 }
 
 // ── Dashboard stats ───────────────────────────────────────────────────────────

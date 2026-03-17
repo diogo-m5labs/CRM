@@ -15,10 +15,10 @@ export default async function ContactDetailPage({ params }: { params: Promise<{ 
   return (
     <div className="p-8 max-w-2xl">
       <Link
-        href="/contacts"
+        href="/contatos"
         className="inline-flex items-center gap-1.5 text-xs text-ink-3 hover:text-ink-2 transition-colors mb-7"
       >
-        <ArrowLeft size={13} /> Contacts
+        <ArrowLeft size={13} /> Contatos
       </Link>
 
       {/* Contact card */}

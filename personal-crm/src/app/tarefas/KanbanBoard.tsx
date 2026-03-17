@@ -12,10 +12,10 @@ import type { Task } from "@prisma/client";
 const COLUMNS = ["Todo", "In Progress", "Done"] as const;
 type Status = (typeof COLUMNS)[number];
 
-const colMeta: Record<Status, { dot: string; label: string; count: string }> = {
-  "Todo":        { dot: "bg-ink-3",   label: "text-ink-3",   count: "bg-white/5 text-ink-3"  },
-  "In Progress": { dot: "bg-warning", label: "text-warning",  count: "bg-warning/10 text-warning" },
-  "Done":        { dot: "bg-success", label: "text-success",  count: "bg-success/10 text-success" },
+const colMeta: Record<Status, { dot: string; label: string; count: string; display: string }> = {
+  "Todo":        { dot: "bg-ink-3",   label: "text-ink-3",   count: "bg-white/5 text-ink-3",       display: "A fazer"       },
+  "In Progress": { dot: "bg-warning", label: "text-warning",  count: "bg-warning/10 text-warning",  display: "Em andamento"  },
+  "Done":        { dot: "bg-success", label: "text-success",  count: "bg-success/10 text-success",  display: "Concluído"     },
 };
 
 function TaskCard({ task, onDelete }: { task: Task; onDelete: () => void }) {
@@ -80,7 +80,7 @@ function Column({
         {/* Header */}
         <div className="flex items-center gap-2 px-4 py-3 border-b border-white/[.05]">
           <span className={`size-1.5 rounded-full shrink-0 ${meta.dot}`} />
-          <span className={`text-xs font-medium tracking-wide ${meta.label}`}>{status}</span>
+          <span className={`text-xs font-medium tracking-wide ${meta.label}`}>{meta.display}</span>
           <span className={`ml-auto text-[10px] font-medium px-1.5 py-0.5 rounded-full tabular-nums ${meta.count}`}>
             {tasks.length}
           </span>
@@ -105,7 +105,7 @@ function Column({
                 value={newTitle}
                 onChange={(e) => setNewTitle(e.target.value)}
                 onKeyDown={(e) => { if (e.key === "Enter") handleAdd(); if (e.key === "Escape") setAdding(false); }}
-                placeholder="Task title…"
+                placeholder="Título da tarefa…"
                 className="w-full rounded-lg bg-raised border border-white/[.07] px-3 py-2 text-sm text-ink placeholder:text-ink-4 outline-none focus:border-white/[.18] transition-colors"
               />
               <div className="flex gap-1.5">
@@ -113,13 +113,13 @@ function Column({
                   onClick={handleAdd}
                   className="flex-1 py-1.5 text-xs rounded-lg bg-accent/15 text-accent-fg hover:bg-accent/25 transition-colors font-medium"
                 >
-                  Add
+                  Adicionar
                 </button>
                 <button
                   onClick={() => setAdding(false)}
                   className="flex-1 py-1.5 text-xs rounded-lg border border-white/[.07] text-ink-3 hover:bg-raised transition-colors"
                 >
-                  Cancel
+                  Cancelar
                 </button>
               </div>
             </div>
@@ -128,7 +128,7 @@ function Column({
               onClick={() => setAdding(true)}
               className="w-full flex items-center gap-1.5 text-xs text-ink-4 hover:text-ink-3 py-1.5 px-2 rounded-lg hover:bg-raised transition-colors"
             >
-              <Plus size={12} strokeWidth={2.5} /> Add task
+              <Plus size={12} strokeWidth={2.5} /> Adicionar tarefa
             </button>
           )}
         </div>

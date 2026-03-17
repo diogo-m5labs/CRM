@@ -38,14 +38,14 @@ export default function MessageThread({ contact }: Props) {
     <div className="bg-surface rounded-xl border border-white/[.06] flex flex-col overflow-hidden">
       <div className="px-5 py-3.5 border-b border-white/[.05]">
         <h2 className="text-xs font-medium text-ink-3 uppercase tracking-widest">
-          Conversation — {messages.length} messages
+          Conversa — {messages.length} mensagem{messages.length !== 1 ? "s" : ""}
         </h2>
       </div>
 
       {/* Messages */}
       <div className="flex-1 px-5 py-4 space-y-3 min-h-[180px] max-h-80 overflow-y-auto">
         {messages.length === 0 ? (
-          <p className="text-sm text-ink-3 text-center py-8">No messages yet.</p>
+          <p className="text-sm text-ink-3 text-center py-8">Nenhuma mensagem ainda.</p>
         ) : (
           messages.map((m) => (
             <div
@@ -91,7 +91,7 @@ export default function MessageThread({ contact }: Props) {
           value={text}
           onChange={(e) => setText(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && send()}
-          placeholder="Write a message…"
+          placeholder="Escreva uma mensagem…"
           className="flex-1 rounded-lg bg-raised border border-white/[.07] px-3 py-2 text-sm text-ink placeholder:text-ink-4 outline-none focus:border-white/[.18] transition-colors"
         />
         <button

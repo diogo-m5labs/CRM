@@ -11,8 +11,8 @@ export default function NewNoteButton() {
 
   async function handle() {
     setLoading(true);
-    const note = await createNote({ title: "Untitled" });
-    router.push(`/notes/${note.id}`);
+    const note = await createNote({ title: "Sem título" });
+    router.push(`/notas/${note.id}`);
   }
 
   return (
@@ -22,7 +22,7 @@ export default function NewNoteButton() {
       className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-accent/15 text-accent-fg text-sm font-medium hover:bg-accent/25 disabled:opacity-40 transition-colors"
     >
       <Plus size={14} strokeWidth={2.5} />
-      New Note
+      Nova Nota
     </button>
   );
 }

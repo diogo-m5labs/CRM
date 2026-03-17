@@ -6,8 +6,8 @@ export default async function TasksPage() {
   return (
     <div className="p-8">
       <div className="mb-8">
-        <h1 className="text-xl font-semibold text-ink tracking-tight">Tasks</h1>
-        <p className="text-sm text-ink-3 mt-0.5">{tasks.length} tasks across all columns</p>
+        <h1 className="text-xl font-semibold text-ink tracking-tight">Tarefas</h1>
+        <p className="text-sm text-ink-3 mt-0.5">{tasks.length} tarefas distribuídas nas colunas</p>
       </div>
       <KanbanBoard initialTasks={tasks} />
     </div>

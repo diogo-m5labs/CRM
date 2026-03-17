@@ -2,14 +2,15 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Users, StickyNote, CheckSquare, LayoutDashboard, LogOut } from "lucide-react";
+import { Users, StickyNote, CheckSquare, LayoutDashboard, MessageSquare, LogOut } from "lucide-react";
 import { logoutAction } from "./logout-action";
 
 const nav = [
-  { href: "/",         label: "Dashboard", icon: LayoutDashboard },
-  { href: "/contacts", label: "Contacts",  icon: Users },
-  { href: "/notes",    label: "Notes",     icon: StickyNote },
-  { href: "/tasks",    label: "Tasks",     icon: CheckSquare },
+  { href: "/",           label: "Início",     icon: LayoutDashboard },
+  { href: "/contatos",   label: "Contatos",   icon: Users },
+  { href: "/conversas",  label: "Conversas",  icon: MessageSquare },
+  { href: "/notas",      label: "Notas",      icon: StickyNote },
+  { href: "/tarefas",    label: "Tarefas",    icon: CheckSquare },
 ];
 
 export default function Sidebar() {
@@ -57,7 +58,7 @@ export default function Sidebar() {
         })}
       </nav>
 
-      {/* Sign out */}
+      {/* Sair */}
       <div className="px-2 pb-3 border-t border-white/[.05] pt-2">
         <form action={logoutAction}>
           <button
@@ -65,7 +66,7 @@ export default function Sidebar() {
             className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-ink-3 hover:bg-raised hover:text-ink-2 transition-colors"
           >
             <LogOut size={14} strokeWidth={1.75} />
-            Sign out
+            Sair
           </button>
         </form>
       </div>
