@@ -24,10 +24,8 @@ export default function Sidebar() {
       {/* Logo */}
       <div className="px-5 py-5 border-b border-white/[.05]">
         <div className="flex items-center gap-2.5">
-          <div className="size-6 rounded-md bg-accent/20 flex items-center justify-center">
-            <div className="size-2.5 rounded-sm bg-accent" />
-          </div>
-          <span className="text-sm font-semibold tracking-tight text-ink">Personal CRM</span>
+          <img src="/logo.png" alt="Logo" className="size-6 object-contain rounded-md" />
+          <span className="text-sm font-semibold tracking-tight text-ink">CRM</span>
         </div>
       </div>
 

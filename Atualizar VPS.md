@@ -6,6 +6,7 @@ git pull
 
 ## Se travar por conflito:
 cd /opt/apps/crm
+rm -f personal-crm/Dockerfile
 git pull
 
 
@@ -13,7 +14,7 @@ git pull
 cd /opt/apps/crm/personal-crm
 
 docker build --no-cache \
-  --build-arg DATABASE_URL="SUA_DATABASE_URL" \
+  --build-arg DATABASE_URL="postgresql://m5labs:m5labs123@vps.m5-labs.com:5432/m5labs_db?sslmode=disable&connect_timeout=10" \
   --build-arg NEXTAUTH_URL="https://crm.m5-labs.com" \
   --build-arg NEXTAUTH_SECRET="SUA_CHAVE_FORTE" \
   -t crm-m5labs:latest .

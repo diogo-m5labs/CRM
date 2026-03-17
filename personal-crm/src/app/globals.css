@@ -3,10 +3,10 @@
 /* ── Design tokens ───────────────────────────────────────────────────────── */
 @theme {
   /* Surfaces — same hue, ascending lightness */
-  --color-canvas:  #0d0d10;
-  --color-surface: #131316;
-  --color-raised:  #1c1c20;
-  --color-overlay: #232328;
+  --color-canvas:  #0d0c0a;
+  --color-surface: #131210;
+  --color-raised:  #1c1b19;
+  --color-overlay: #231f1c;
 
   /* Text hierarchy */
   --color-ink:   #eeeef0;
@@ -14,9 +14,9 @@
   --color-ink-3: #55555f;
   --color-ink-4: #2e2e37;
 
-  /* Single accent — warm indigo */
-  --color-accent:    #7c6af7;
-  --color-accent-fg: #b0a5ff;
+  /* Single accent — M5 Labs magenta */
+  --color-accent:    #eb268e;
+  --color-accent-fg: #f472b6;
 
   /* Semantic */
   --color-success: #4aab79;
@@ -25,7 +25,7 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-geist);
+  --font-sans: var(--font-public-sans);
 }
 
 /* ── Base ────────────────────────────────────────────────────────────────── */
@@ -33,7 +33,7 @@
 
 html {
   color-scheme: dark;
-  font-size: 17px;
+  font-size: 20px;
 }
 
 body {

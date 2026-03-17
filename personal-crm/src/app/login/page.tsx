@@ -15,10 +15,8 @@ export default function LoginPage() {
 
         {/* Brand */}
         <div className="flex flex-col items-center mb-8">
-          <div className="size-11 rounded-xl bg-accent/15 flex items-center justify-center mb-4">
-            <div className="size-5 rounded-md bg-accent" />
-          </div>
-          <h1 className="text-base font-semibold text-ink tracking-tight">Personal CRM</h1>
+          <img src="/logo.png" alt="Logo" className="size-11 object-contain rounded-xl mb-4" />
+          <h1 className="text-base font-semibold text-ink tracking-tight">CRM</h1>
           <p className="text-sm text-ink-3 mt-1">Entre para continuar</p>
         </div>
 
