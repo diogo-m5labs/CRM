@@ -1,10 +1,34 @@
 import { PrismaClient } from "@prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
 
-function createPrismaClient() {
+function getConnectionString(): string {
   const url = process.env.DATABASE_URL;
-  if (!url) throw new Error("DATABASE_URL is not set. Check your environment variables.");
-  const adapter = new PrismaPg({ connectionString: url });
+
+  // Use DATABASE_URL directly if it's a real postgres URL
+  if (url && (url.startsWith("postgresql://") || url.startsWith("postgres://"))) {
+    return url;
+  }
+
+  // Fall back to individual DB_* env vars (e.g. Portainer/Docker Compose setup)
+  const host     = process.env.DB_HOST;
+  const user     = process.env.DB_USER;
+  const password = process.env.DB_PASSWORD;
+  const name     = process.env.DB_NAME;
+  const port     = process.env.DB_PORT     ?? "5432";
+  const ssl      = process.env.SSL_MODE    ?? "disable";
+  const timeout  = process.env.CONNECT_TIMEOUT ?? "10";
+
+  if (host && user && password && name) {
+    return `postgresql://${user}:${encodeURIComponent(password)}@${host}:${port}/${name}?sslmode=${ssl}&connect_timeout=${timeout}`;
+  }
+
+  throw new Error(
+    "Database not configured. Set DATABASE_URL or DB_HOST/DB_USER/DB_PASSWORD/DB_NAME."
+  );
+}
+
+function createPrismaClient() {
+  const adapter = new PrismaPg({ connectionString: getConnectionString() });
   return new PrismaClient({ adapter });
 }
 
