@@ -1,0 +1,96 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ── Tabelas existentes protegidas (não gerenciadas pelo CRM) ──────────────────
+
+model Category {
+  id           Int           @id @default(autoincrement())
+  name         String        @unique
+  color        String?
+  transactions Transaction[]
+
+  @@map("categories")
+}
+
+model Transaction {
+  id              Int       @id @default(autoincrement())
+  title           String
+  amount          Decimal
+  type            String
+  categoryId      Int?      @map("category_id")
+  category        Category? @relation(fields: [categoryId], references: [id])
+  transactionDate DateTime? @map("transaction_date")
+  createdAt       DateTime? @default(now()) @map("created_at")
+
+  @@map("transactions")
+}
+
+model N8nChatHistory {
+  id        Int    @id @default(autoincrement())
+  sessionId String @map("session_id")
+  message   Json
+
+  @@map("n8n_chat_histories")
+}
+
+model TblTeste {
+  nome  String? @map("Nome")
+  idade Int?    @map("Idade")
+
+  @@ignore
+  @@map("tbl_teste")
+}
+
+// ── CRM ───────────────────────────────────────────────────────────────────────
+
+model Contact {
+  id            String         @id @default(uuid())
+  name          String
+  phoneNumber   String?
+  email         String?
+  company       String?
+  notes         String?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  conversations Conversation[]
+
+  @@map("contacts")
+}
+
+model Conversation {
+  id          String   @id @default(uuid())
+  contactId   String
+  contact     Contact  @relation(fields: [contactId], references: [id], onDelete: Cascade)
+  messageText String
+  direction   String   // 'inbound' or 'outbound'
+  timestamp   DateTime @default(now())
+
+  @@map("conversations")
+}
+
+model Note {
+  id        String   @id @default(uuid())
+  title     String
+  content   String   @default("")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("notes")
+}
+
+model Task {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  status      String   @default("Todo") // 'Todo', 'In Progress', 'Done'
+  position    Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("tasks")
+}

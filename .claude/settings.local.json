@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "mcp__postgres__query"
+      "mcp__postgres__query",
+      "Bash(npx prisma:*)",
+      "Bash(npm install:*)",
+      "Bash(npx next:*)",
+      "Bash(npm run:*)"
     ]
   }
 }

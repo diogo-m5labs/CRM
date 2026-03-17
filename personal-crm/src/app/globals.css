@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+/* ── Design tokens ───────────────────────────────────────────────────────── */
+@theme {
+  /* Surfaces — same hue, ascending lightness */
+  --color-canvas:  #0d0d10;
+  --color-surface: #131316;
+  --color-raised:  #1c1c20;
+  --color-overlay: #232328;
+
+  /* Text hierarchy */
+  --color-ink:   #eeeef0;
+  --color-ink-2: #93939d;
+  --color-ink-3: #55555f;
+  --color-ink-4: #2e2e37;
+
+  /* Single accent — warm indigo */
+  --color-accent:    #7c6af7;
+  --color-accent-fg: #b0a5ff;
+
+  /* Semantic */
+  --color-success: #4aab79;
+  --color-warning: #d4892c;
+  --color-danger:  #d05555;
+}
+
+@theme inline {
+  --font-sans: var(--font-geist);
+}
+
+/* ── Base ────────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { color-scheme: dark; }
+
+body {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans, system-ui, sans-serif);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.14); }
+
+/* ── TipTap prose dark ───────────────────────────────────────────────────── */
+.ProseMirror {
+  outline: none;
+  color: var(--color-ink);
+  line-height: 1.7;
+}
+.ProseMirror h2 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-ink);
+  margin: 1.25rem 0 0.5rem;
+  letter-spacing: -0.01em;
+}
+.ProseMirror p { margin: 0.5rem 0; color: var(--color-ink-2); }
+.ProseMirror strong { color: var(--color-ink); font-weight: 600; }
+.ProseMirror em { color: var(--color-ink-2); }
+.ProseMirror ul, .ProseMirror ol { padding-left: 1.4rem; color: var(--color-ink-2); }
+.ProseMirror li { margin: 0.2rem 0; }
+.ProseMirror code {
+  font-size: 0.8em;
+  background: rgba(255,255,255,0.07);
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+  color: var(--color-accent-fg);
+}
+.ProseMirror blockquote {
+  border-left: 2px solid rgba(255,255,255,0.12);
+  padding-left: 1rem;
+  color: var(--color-ink-3);
+  margin: 0.75rem 0;
+}
+.ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  color: var(--color-ink-4);
+  pointer-events: none;
+  float: left;
+  height: 0;
+}
