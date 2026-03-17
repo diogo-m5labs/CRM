@@ -1,0 +1,4 @@
+cd /opt/apps/crm
+git pull
+cd personal-crm
+docker build --no-cache -t crm-m5labs:latest .
