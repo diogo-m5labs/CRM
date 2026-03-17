@@ -1,4 +1,3 @@
-// Deterministic avatar color from name initial
 const PALETTE = [
   { bg: "rgba(124,106,247,0.15)", text: "#b0a5ff" }, // indigo
   { bg: "rgba(74,171,121,0.15)",  text: "#6cd49e" }, // green
@@ -7,6 +6,15 @@ const PALETTE = [
   { bg: "rgba(82,162,219,0.15)",  text: "#7dbde8" }, // blue
 ];
 
+// djb2-style hash over full name — distributes across adjacent initials
+function hash(name: string) {
+  let h = 5381;
+  for (let i = 0; i < name.length; i++) {
+    h = ((h << 5) + h) ^ name.charCodeAt(i);
+  }
+  return Math.abs(h);
+}
+
 export function avatarColor(name: string) {
-  return PALETTE[name.charCodeAt(0) % PALETTE.length];
+  return PALETTE[hash(name) % PALETTE.length];
 }
